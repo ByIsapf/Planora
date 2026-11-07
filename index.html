@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Planora: organizador do dia a dia. Planeje suas tarefas por período e acompanhe o progresso.">
+    <title>Planora | Organizador do dia a dia</title>
+
+    <!-- FONTES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="app">
+
+        <!-- MARCA -->
+        <div class="brand">
+
+            <p class="brand-name">Planora<span>.</span></p>
+
+            <p class="brand-tagline">
+                Seu dia, organizado por período.
+            </p>
+
+        </div>
+
+        <!-- DATA E PROGRESSO -->
+        <header class="today">
+
+            <div>
+                <p class="today-weekday" id="weekday"></p>
+                <h1 id="date"></h1>
+            </div>
+
+            <div class="progress">
+                <p id="progress-text" aria-live="polite">Nenhuma tarefa ainda</p>
+                <div
+                    class="progress-bar"
+                    id="progress-bar"
+                    role="progressbar"
+                    aria-label="Progresso do dia"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    aria-valuenow="0"
+                >
+                    <span id="progress-fill"></span>
+                </div>
+            </div>
+
+        </header>
+
+        <!-- NOVA TAREFA -->
+        <form class="task-form" id="task-form">
+
+            <label class="field field-text">
+                <span>Nova tarefa</span>
+                <input
+                    type="text"
+                    id="task-input"
+                    maxlength="80"
+                    placeholder="Ex.: Estudar Node.js por 1 hora"
+                    autocomplete="off"
+                    required
+                >
+            </label>
+
+            <label class="field">
+                <span>Período</span>
+                <select id="task-period">
+                    <option value="manha">Manhã</option>
+                    <option value="tarde">Tarde</option>
+                    <option value="noite">Noite</option>
+                </select>
+            </label>
+
+            <label class="field">
+                <span>Prioridade</span>
+                <select id="task-priority">
+                    <option value="alta">Alta</option>
+                    <option value="media" selected>Média</option>
+                    <option value="baixa">Baixa</option>
+                </select>
+            </label>
+
+            <button type="submit" class="btn-add">Adicionar tarefa</button>
+
+        </form>
+
+        <!-- FILTROS -->
+        <div class="toolbar">
+
+            <div class="filters" role="group" aria-label="Filtrar tarefas">
+                <button type="button" class="filter is-active" data-filter="all" aria-pressed="true">Todas</button>
+                <button type="button" class="filter" data-filter="pending" aria-pressed="false">Pendentes</button>
+                <button type="button" class="filter" data-filter="done" aria-pressed="false">Concluídas</button>
+            </div>
+
+            <button type="button" class="btn-clear" id="clear-done">Limpar concluídas</button>
+
+        </div>
+
+        <!-- PERÍODOS DO DIA -->
+        <div class="periods">
+
+            <section class="period" aria-labelledby="title-manha">
+                <div class="period-head">
+                    <h2 id="title-manha">Manhã</h2>
+                    <span class="period-hint">até 12h</span>
+                    <span class="count" id="count-manha" title="Tarefas pendentes">0</span>
+                </div>
+                <ul class="task-list" id="list-manha"></ul>
+            </section>
+
+            <section class="period" aria-labelledby="title-tarde">
+                <div class="period-head">
+                    <h2 id="title-tarde">Tarde</h2>
+                    <span class="period-hint">12h às 18h</span>
+                    <span class="count" id="count-tarde" title="Tarefas pendentes">0</span>
+                </div>
+                <ul class="task-list" id="list-tarde"></ul>
+            </section>
+
+            <section class="period" aria-labelledby="title-noite">
+                <div class="period-head">
+                    <h2 id="title-noite">Noite</h2>
+                    <span class="period-hint">depois das 18h</span>
+                    <span class="count" id="count-noite" title="Tarefas pendentes">0</span>
+                </div>
+                <ul class="task-list" id="list-noite"></ul>
+            </section>
+
+        </div>
+
+    </main>
+
+    <!-- JAVASCRIPT -->
+    <script src="script.js"></script>
+
+</body>
+</html>
